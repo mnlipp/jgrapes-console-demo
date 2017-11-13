@@ -9,12 +9,12 @@ Bundle-Activator: org.jgrapes.osgi.demo.heroku.Application
 	osgi.annotation;version=6.0.1,\
 	osgi.cmpn;version=6.0,\
 	org.jgrapes.osgi.portlets.sysinfo,\
-	org.jgrapes.core;version=0.9.1.201711051211,\
-	org.jgrapes.io;version=0.9.1.201711051211,\
-	org.jgrapes.http;version=0.9.1.201711051211,\
-	org.jgrapes.portal;version=0.9.1.201711051211,\
-	org.jgrapes.osgi.portal;version=0.9.0.201711051211,\
-	org.jgrapes.osgi.factory;version=0.9.0.201711051211
+	org.jgrapes.core,\
+	org.jgrapes.io,\
+	org.jgrapes.http,\
+	org.jgrapes.portal,\
+	org.jgrapes.osgi.portal,\
+	org.jgrapes.osgi.factory
 
 -includeresource: \
 	resources
