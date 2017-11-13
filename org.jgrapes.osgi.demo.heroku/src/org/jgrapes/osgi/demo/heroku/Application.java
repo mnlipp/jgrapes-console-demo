@@ -20,6 +20,7 @@ package org.jgrapes.osgi.demo.heroku;
 
 import java.net.InetSocketAddress;
 import java.net.URI;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import org.jgrapes.core.Channel;
@@ -69,7 +70,9 @@ public class Application extends Component implements BundleActivator {
 		Channel httpTransport = new NamedChannel("httpTransport");
 		// Create a TCP server listening on port 5000
 		app.attach(new TcpServer(httpTransport)
-				.setServerAddress(new InetSocketAddress(5000)));
+				.setServerAddress(new InetSocketAddress(
+						Optional.ofNullable(System.getenv("PORT"))
+						.map(Integer::parseInt).orElse(5000))));
 
 		// Create an HTTP server as converter between transport and application
 		// layer.
