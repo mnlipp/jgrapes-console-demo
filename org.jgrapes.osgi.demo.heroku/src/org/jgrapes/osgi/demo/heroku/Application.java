@@ -91,7 +91,8 @@ public class Application extends Component implements BundleActivator {
 							ResourceBundle.Control.FORMAT_DEFAULT)))
 				.setFallbackResourceSupplier((themeProvider, resource) -> {
 					return Application.class.getResourceAsStream(resource);
-				});
+				})
+				.setPortalSessionInactivityTimeout(300000);
 		portal.attach(new PortalLocalBackedKVStore(
 				portal, portal.prefix().getPath()));
 		portal.attach(new KVStoreBasedPortalPolicy(portal));
