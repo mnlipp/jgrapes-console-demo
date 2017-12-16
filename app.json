@@ -1,6 +1,6 @@
 {
-  "name": "Heroku OSGi Console Demo",
-  "description": "A demo of the JGrapes OSGi console portlets.",
+  "name": "Heroku JGrapes Portal Demo",
+  "description": "A JGrapes portal demo application.",
   "image": "heroku/gradle",
   "addons": []
 }
