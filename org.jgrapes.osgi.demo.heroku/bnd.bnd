@@ -1,4 +1,4 @@
-Bundle-Name: JGrapes Heroku OSGi HTTP Server
+Bundle-Name: JGrapes Heroku OSGi Portal Demo
 Bundle-Version: 0.9.0.${tstamp}-SNAPSHOT
 Bundle-Copyright: Michael N. Lipp (c) 2017
 Bundle-License: http://www.gnu.org/licenses/gpl-3.0.txt
