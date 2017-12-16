@@ -34,5 +34,17 @@
             <version>0.9.0-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.jgrapes</groupId>
+            <artifactId>org.jgrapes.osgi.portal.providers.chartjs</artifactId>
+            <version>0.9.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jgrapes</groupId>
+            <artifactId>org.jgrapes.osgi.portal.providers.datatables</artifactId>
+            <version>0.9.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 </project>
