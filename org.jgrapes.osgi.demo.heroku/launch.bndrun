@@ -44,13 +44,13 @@
 	org.jgrapes.portal.themes.uidarkness;version=latest,\
 	org.jgrapes.portal.themes.uilightness;version=latest,\
 	org.jgrapes.portal.themes.vader;version=latest,\
-	org.jgrapes.portal.providers.chartjs,\
+	org.jgrapes.portal.providers.chartjs;version=latest,\
 	org.jgrapes.osgi.portal.providers.chartjs;version=latest,\
-	org.jgrapes.portal.providers.datatables,\
+	org.jgrapes.portal.providers.datatables;version=latest,\
 	org.jgrapes.osgi.portal.providers.datatables;version=latest,\
-	org.jgrapes.portal.providers.markdownit,\
+	org.jgrapes.portal.providers.markdownit;version=latest,\
 	org.jgrapes.osgi.portal.providers.markdownit;version=latest,\
-	org.jgrapes.portlets.sysinfo;version=latest,\
+	org.jgrapes.portlets.sysinfo;version=latest;version=latest,\
 	org.jgrapes.osgi.portlets.sysinfo;version=latest,\
 	org.jgrapes.portlets.markdowndisplay;version=latest,\
 	org.jgrapes.osgi.portlets.markdowndisplay;version=latest,\
