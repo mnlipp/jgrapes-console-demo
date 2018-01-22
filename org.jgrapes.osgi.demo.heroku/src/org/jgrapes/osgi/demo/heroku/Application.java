@@ -31,6 +31,7 @@ import org.jgrapes.core.events.Stop;
 import org.jgrapes.http.HttpServer;
 import org.jgrapes.http.InMemorySessionManager;
 import org.jgrapes.http.LanguageSelector;
+import org.jgrapes.http.StaticContentDispatcher;
 import org.jgrapes.http.events.GetRequest;
 import org.jgrapes.http.events.PostRequest;
 import org.jgrapes.io.FileStorage;
@@ -85,6 +86,8 @@ public class Application extends Component implements BundleActivator {
 		app.attach(new InMemorySessionManager(app.channel()));
 		app.attach(new LanguageSelector(app.channel()));
 		app.attach(new FileStorage(app.channel(), 65536));
+		app.attach(new StaticContentDispatcher(app.channel(),
+		        "/static/**", Application.class.getResource("static/README.txt").toURI()));
 		Portal portal = app.attach(new Portal(Channel.SELF, app.channel(), 
 				new URI("/")))
 				.setResourceBundleSupplier(l -> ResourceBundle.getBundle(

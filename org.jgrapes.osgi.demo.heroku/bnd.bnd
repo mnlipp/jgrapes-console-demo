@@ -13,6 +13,7 @@ Bundle-Activator: org.jgrapes.osgi.demo.heroku.Application
 	org.jgrapes.http;version=0.9.34,\
 	org.jgrapes.util;version=0.9.34,\
 	org.jgrapes.portal;version=0.9.5,\
+	org.jgrapes.portlets.markdowndisplay;version='latest',\
 	org.jgrapes.osgi.core;version='latest'
 
 -includeresource: \

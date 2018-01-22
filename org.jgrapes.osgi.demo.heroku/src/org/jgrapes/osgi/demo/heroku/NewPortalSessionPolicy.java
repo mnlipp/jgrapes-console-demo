@@ -18,22 +18,31 @@
 
 package org.jgrapes.osgi.demo.heroku;
 
-import java.util.Optional;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 import org.jgrapes.core.Channel;
 import org.jgrapes.core.Component;
 import org.jgrapes.core.annotation.Handler;
-import org.jgrapes.http.Session;
-import org.jgrapes.io.IOSubchannel;
+import org.jgrapes.portal.PortalSession;
+import org.jgrapes.portal.Portlet;
+import org.jgrapes.portal.events.AddPortletRequest;
 import org.jgrapes.portal.events.PortalConfigured;
+import org.jgrapes.portal.events.PortalPrepared;
 import org.jgrapes.portal.events.RenderPortlet;
+import org.jgrapes.portal.events.UpdatePortletModel;
+import org.jgrapes.portlets.markdowndisplay.MarkdownDisplayPortlet;
+import org.jgrapes.portlets.markdowndisplay.MarkdownDisplayPortlet.Preferences;
 
 /**
  * 
  */
 public class NewPortalSessionPolicy extends Component {
 
-	private final String renderedFlagName = getClass().getName() + ".rendered";
+	private static final String INTRO_PORTLET_ID = "IntroPortlet";
 	
 	/**
 	 * Creates a new component with its channel set to
@@ -52,23 +61,50 @@ public class NewPortalSessionPolicy extends Component {
 	}
 
 	@Handler
-	public void onRenderPortlet(RenderPortlet event, IOSubchannel channel) {
-		channel.associated(Session.class).ifPresent(session -> 
-			session.put(renderedFlagName, true));
+	public void onPortalPrepared(PortalPrepared event, PortalSession portalSession) {
+		portalSession.setAssociated(NewPortalSessionPolicy.class, false);
 	}
 	
 	@Handler
-	public void onPortalConfigured(PortalConfigured event, IOSubchannel channel) 
-			throws InterruptedException {
-		Optional<Session> optSession = channel.associated(Session.class);
-		if (optSession.isPresent()) {
-			if ((Boolean)optSession.get().getOrDefault(
-					renderedFlagName, false)) {
-				return;
-			}
-//			fire(new AddPortletRequest(event.event().event().renderSupport(), 
-//					HelloWorldPortlet.class.getName(), 
-//					Portlet.RenderMode.DeleteablePreview), channel);
+	public void onRenderPortlet(RenderPortlet event, PortalSession portalSession) {
+		if (event.portletId().equals(INTRO_PORTLET_ID)) {
+			portalSession.setAssociated(NewPortalSessionPolicy.class, true);
+		}
+	}
+	
+	@Handler
+	public void onPortalConfigured(PortalConfigured event, PortalSession portalSession) 
+			throws InterruptedException, IOException {
+		boolean foundIntro = portalSession.associated(
+				NewPortalSessionPolicy.class, Boolean.class).orElse(false);
+		String shortDesc;
+		try (BufferedReader shortDescReader = new BufferedReader(new InputStreamReader(
+				NewPortalSessionPolicy.class.getResourceAsStream("PortalIntro-Preview.md"),
+				"utf-8"))) {
+			shortDesc = shortDescReader.lines().collect(Collectors.joining("\n"));
+		}
+		String longDesc;
+		try (BufferedReader shortDescReader = new BufferedReader(new InputStreamReader(
+				NewPortalSessionPolicy.class.getResourceAsStream("PortalIntro-View.md"),
+				"utf-8"))) {
+			longDesc = shortDescReader.lines().collect(Collectors.joining("\n"));
+		}
+		if (!foundIntro) {
+			fire(new AddPortletRequest(event.event().event().renderSupport(), 
+					MarkdownDisplayPortlet.class.getName(),
+					Portlet.RenderMode.Preview)
+					.addPreference(Preferences.PORTLET_ID, INTRO_PORTLET_ID)
+					.addPreference(Preferences.TITLE, "Demo Portal")
+					.addPreference(Preferences.PREVIEW_SOURCE, shortDesc)
+					.addPreference(Preferences.DELETABLE, false)
+					.addPreference(Preferences.VIEW_SOURCE, longDesc)
+					.addPreference(Preferences.EDITABLE_BY,  Collections.EMPTY_SET),
+					portalSession);
+		} else {
+			fire(new UpdatePortletModel(INTRO_PORTLET_ID)
+					.addPreference(Preferences.PREVIEW_SOURCE, shortDesc)
+					.addPreference(Preferences.VIEW_SOURCE, longDesc),
+					portalSession);
 		}
 	}
 
