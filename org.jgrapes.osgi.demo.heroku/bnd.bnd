@@ -8,11 +8,11 @@ Bundle-Activator: org.jgrapes.osgi.demo.heroku.Application
 	osgi.core;version=6.0.0,\
 	osgi.annotation;version=6.0.1,\
 	osgi.cmpn;version=6.0,\
-	org.jgrapes.core;version=0.9.34,\
-	org.jgrapes.io;version=0.9.34,\
-	org.jgrapes.http;version=0.9.34,\
-	org.jgrapes.util;version=0.9.34,\
-	org.jgrapes.portal;version=0.9.5.ga,\
+	org.jgrapes.core;version=latest,\
+	org.jgrapes.io;version=latest,\
+	org.jgrapes.http;version=latest,\
+	org.jgrapes.util;version=latest,\
+	org.jgrapes.portal;version=latest,\
 	org.jgrapes.portlets.markdowndisplay;version='latest',\
 	org.jgrapes.osgi.core;version='latest'
 
