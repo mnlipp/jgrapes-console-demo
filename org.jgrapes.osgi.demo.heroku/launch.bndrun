@@ -28,8 +28,8 @@
 	
 -runrequires: \
 	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.demo.heroku)',\
-	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.portlets.sysinfo)',\
-	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.portlets.markdowndisplay)',\
+	osgi.identity;filter:='(osgi.identity=org.jgrapes.portlets.sysinfo)',\
+	osgi.identity;filter:='(osgi.identity=org.jgrapes.portlets.markdowndisplay)',\
 	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.portlets.bundles)',\
 	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.portlets.services)'
 -runprogramargs: -console
