@@ -19,12 +19,12 @@
 	org.jgrapes.osgi.portlets.bundles;version='[0.9.2,0.9.3)',\
 	org.jgrapes.osgi.portlets.services;version='[0.9.2,0.9.3)',\
 	org.jgrapes.portal;version='[0.10.0,0.10.1)',\
-	org.jgrapes.portal.providers.chartjs;version='[0.10.0,0.10.1)',\
-	org.jgrapes.portal.providers.datatables;version='[0.10.0,0.10.1)',\
-	org.jgrapes.portal.providers.markdownit;version='[0.10.0,0.10.1)',\
 	org.jgrapes.portlets.markdowndisplay;version='[0.10.0,0.10.1)',\
 	org.jgrapes.portlets.sysinfo;version='[0.10.0,0.10.1)',\
-	org.jgrapes.util;version='[0.12.0,0.12.1)'
+	org.jgrapes.util;version='[0.12.0,0.12.1)',\
+	org.jgrapes.portal.providers.chartjs;version='[0.10.0,0.10.1)',\
+	org.jgrapes.portal.providers.datatables;version='[0.10.0,0.10.1)',\
+	org.jgrapes.portal.providers.markdownit;version='[0.10.0,0.10.1)'
 	
 -runrequires: \
 	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.demo.heroku)',\
@@ -32,6 +32,11 @@
 	osgi.identity;filter:='(osgi.identity=org.jgrapes.portlets.markdowndisplay)',\
 	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.portlets.bundles)',\
 	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.portlets.services)'
+# Deprecated versions:
+-runblacklist: \
+	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.portal.providers.chartjs)',\
+	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.portal.providers.datatables)',\
+	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.portal.providers.markdownit)'
 -runprogramargs: -console
 -runproperties: \
 	org.apache.felix.log=10000,\
