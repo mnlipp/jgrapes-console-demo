@@ -5,26 +5,29 @@
 	org.apache.felix.scr;version='[2.0.2,2.0.3)',\
 	org.osgi.compendium;version='[4.1.0,4.1.1)',\
 	org.apache.felix.metatype;version='[1.1.2,1.1.3)',\
-	org.glassfish.javax.json;version='[1.1.0,1.1.1)',\
 	org.jgrapes.osgi.demo.heroku;version=snapshot,\
 	org.objectweb.asm.all;version='[5.1.0,5.1.1)',\
 	osgi.promise;version='[6.0.0,6.0.1)',\
 	org.freemarker.freemarker;version='[2.3.27,2.3.28)',\
 	org.jdrupes.httpcodec;version='[1.0.4,1.0.5)',\
-	org.jdrupes.json;version='[1.1.0,1.1.1)',\
-	org.jgrapes.core;version='[0.14.0,0.14.1)',\
-	org.jgrapes.http;version='[0.14.0,0.14.1)',\
-	org.jgrapes.io;version='[0.14.0,0.14.1)',\
 	org.jgrapes.osgi.core;version='[0.9.3,0.9.4)',\
-	org.jgrapes.osgi.portlets.bundles;version='[0.9.6,0.9.7)',\
-	org.jgrapes.osgi.portlets.services;version='[0.9.6,0.9.7)',\
-	org.jgrapes.portal;version='[0.11.0,0.11.1)',\
-	org.jgrapes.portlets.markdowndisplay;version='[0.11.0,0.11.1)',\
-	org.jgrapes.portlets.sysinfo;version='[0.11.0,0.11.1)',\
-	org.jgrapes.util;version='[0.14.0,0.14.1)',\
-	org.jgrapes.portal.providers.chartjs;version='[0.11.0,0.11.1)',\
-	org.jgrapes.portal.providers.datatables;version='[0.11.0,0.11.1)',\
-	org.jgrapes.portal.providers.markdownit;version='[0.11.0,0.11.1)'
+	com.fasterxml.jackson.core.jackson-core;version='[2.9.4,2.9.5)',\
+	org.jdrupes.httpcodec;version='[1.0.0,1.0.1)',\
+	org.jdrupes.json;version='[2.0.0,2.0.1)',\
+	org.jgrapes.core;version='[0.15.0,0.15.1)',\
+	org.jgrapes.http;version='[0.15.0,0.15.1)',\
+	org.jgrapes.io;version='[0.15.0,0.15.1)',\
+	org.jgrapes.osgi.portlets.bundles;version='[0.9.8,0.9.9)',\
+	org.jgrapes.osgi.portlets.services;version='[0.9.8,0.9.9)',\
+	org.jgrapes.portal;version='[0.12.0,0.12.1)',\
+	org.jgrapes.portal.providers.chartjs;version='[0.9.7,0.9.8)',\
+	org.jgrapes.portal.providers.datatables;version='[0.9.6,0.9.7)',\
+	org.jgrapes.portal.providers.markdownit;version='[0.12.0,0.12.1)',\
+	org.jgrapes.portal.themes.southstreet;version='[1.0.0,1.0.1)',\
+	org.jgrapes.portlets.markdowndisplay;version='[0.12.0,0.12.1)',\
+	org.jgrapes.portlets.sysinfo;version='[0.12.0,0.12.1)',\
+	org.jgrapes.util;version='[0.15.0,0.15.1)',\
+	org.osgi.service.component;version='[1.3.0,1.3.1)'
 	
 -runrequires: \
 	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.demo.heroku)',\
