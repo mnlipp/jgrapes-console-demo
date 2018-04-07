@@ -35,7 +35,6 @@ import org.jgrapes.portal.events.PortalPrepared;
 import org.jgrapes.portal.events.RenderPortlet;
 import org.jgrapes.portal.events.UpdatePortletModel;
 import org.jgrapes.portlets.markdowndisplay.MarkdownDisplayPortlet;
-import org.jgrapes.portlets.markdowndisplay.MarkdownDisplayPortlet.Preferences;
 
 /**
  * 
@@ -93,17 +92,17 @@ public class NewPortalSessionPolicy extends Component {
 			fire(new AddPortletRequest(event.event().event().renderSupport(), 
 					MarkdownDisplayPortlet.class.getName(),
 					Portlet.RenderMode.Preview)
-					.addPreference(Preferences.PORTLET_ID, INTRO_PORTLET_ID)
-					.addPreference(Preferences.TITLE, "Demo Portal")
-					.addPreference(Preferences.PREVIEW_SOURCE, shortDesc)
-					.addPreference(Preferences.DELETABLE, false)
-					.addPreference(Preferences.VIEW_SOURCE, longDesc)
-					.addPreference(Preferences.EDITABLE_BY,  Collections.EMPTY_SET),
+					.addProperty(MarkdownDisplayPortlet.PORTLET_ID, INTRO_PORTLET_ID)
+					.addProperty(MarkdownDisplayPortlet.TITLE, "Demo Portal")
+					.addProperty(MarkdownDisplayPortlet.PREVIEW_SOURCE, shortDesc)
+					.addProperty(MarkdownDisplayPortlet.DELETABLE, false)
+					.addProperty(MarkdownDisplayPortlet.VIEW_SOURCE, longDesc)
+					.addProperty(MarkdownDisplayPortlet.EDITABLE_BY,  Collections.EMPTY_SET),
 					portalSession);
 		} else {
 			fire(new UpdatePortletModel(INTRO_PORTLET_ID)
-					.addPreference(Preferences.PREVIEW_SOURCE, shortDesc)
-					.addPreference(Preferences.VIEW_SOURCE, longDesc),
+					.addPreference(MarkdownDisplayPortlet.PREVIEW_SOURCE, shortDesc)
+					.addPreference(MarkdownDisplayPortlet.VIEW_SOURCE, longDesc),
 					portalSession);
 		}
 	}
