@@ -44,7 +44,6 @@ junit: org.apache.servicemix.bundles.junit; version=4.12
 javac.source: 1.8
 javac.target: 1.8
 
-artifact_version: ${versionmask;===s;${Bundle-Version}}
 -outputmask: ${@bsn}-${versionmask;===s;${@version}}.jar
 
 -fixupmessages: \
