@@ -11,14 +11,14 @@
         name=OSGi; \
     	snapshotUrls=https://oss.sonatype.org/content/repositories/snapshots/; \
         releaseUrls=https://repo1.maven.org/maven2; \
-        query='q=g:%22org.osgi%22&rows=1000'
+        query='q=g:%22org.osgi%22&rows=10000'
 
 -plugin.6.Felix = \
     aQute.bnd.repository.maven.pom.provider.BndPomRepository; \
         name=Felix; \
     	snapshotUrls=https://oss.sonatype.org/content/repositories/snapshots/; \
         releaseUrls=https://repo1.maven.org/maven2; \
-        query='q=g:%22org.apache.felix%22&rows=1000'
+        query='q=g:%22org.apache.felix%22&rows=10000'
 
 #-plugin.7.JGrapes: \
 #    de.mnl.osgi.bnd.repository.maven.provider.NexusSearchRepositoryProvider; \
