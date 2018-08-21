@@ -21,7 +21,6 @@ package org.jgrapes.osgi.demo.heroku;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 import org.jgrapes.core.Channel;
 import org.jgrapes.core.Component;
