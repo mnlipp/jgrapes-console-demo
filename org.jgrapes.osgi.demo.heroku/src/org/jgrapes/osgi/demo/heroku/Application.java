@@ -94,10 +94,8 @@ public class Application extends Component implements BundleActivator {
         	= app.attach(new Bootstrap4Weblet(app.channel(), Channel.SELF,
             new URI("/")))
         	.prependClassTemplateLoader(this.getClass())
-            .setResourceBundleSupplier(l -> ResourceBundle.getBundle(
-                getClass().getPackage().getName() + ".portal-l10n", l,
-                ResourceBundle.Control.getNoFallbackControl(
-                    ResourceBundle.Control.FORMAT_DEFAULT)))
+        	.prependPortalResourceProvider(getClass())
+        	.prependResourceBundleProvider(getClass())
             .setPortalSessionInactivityTimeout(300000);
         Portal portal = portalWeblet.portal();
         portal.attach(new PortalLocalBackedKVStore(

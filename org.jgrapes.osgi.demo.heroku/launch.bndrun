@@ -19,15 +19,15 @@
 	osgi.promise;version='[7.0.0,7.0.1)',\
 	org.jgrapes.osgi.portlets.bundles;version='[0.9.15,0.9.16)',\
 	org.jgrapes.osgi.portlets.services;version='[0.9.17,0.9.18)',\
-	org.jgrapes.portal.base;version='[0.19.2,0.19.3)',\
-	org.jgrapes.portal.bootstrap4;version='[0.19.2,0.19.3)',\
-	org.jgrapes.portal.providers.chartjs;version='[0.19.2,0.19.3)',\
-	org.jgrapes.portal.providers.fontawesome;version='[0.19.2,0.19.3)',\
-	org.jgrapes.portal.providers.markdownit;version='[0.19.2,0.19.3)',\
-	org.jgrapes.portal.providers.vuejs;version='[0.19.2,0.19.3)',\
-	org.jgrapes.portlets.markdowndisplay;version='[0.19.2,0.19.3)',\
-	org.jgrapes.portlets.sysinfo;version='[0.19.2,0.19.3)',\
-	org.apache.felix.scr;version='[2.0.2,2.0.3)',\
+	org.apache.felix.scr;version='[2.1.6,2.1.7)',\
+	org.jgrapes.portal.base;version='[0.19.3,0.19.4)',\
+	org.jgrapes.portal.bootstrap4;version='[0.19.3,0.19.4)',\
+	org.jgrapes.portal.providers.chartjs;version='[0.19.3,0.19.4)',\
+	org.jgrapes.portal.providers.fontawesome;version='[0.19.3,0.19.4)',\
+	org.jgrapes.portal.providers.markdownit;version='[0.19.3,0.19.4)',\
+	org.jgrapes.portal.providers.vuejs;version='[0.19.3,0.19.4)',\
+	org.jgrapes.portlets.markdowndisplay;version='[0.19.3,0.19.4)',\
+	org.jgrapes.portlets.sysinfo;version='[0.19.3,0.19.4)',\
 	org.osgi.service.log;version='[1.4.0,1.4.1)'
 	
 -runrequires: \
