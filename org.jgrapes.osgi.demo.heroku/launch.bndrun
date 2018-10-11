@@ -2,33 +2,33 @@
 -runbundles: \
 	org.apache.aries.spifly.dynamic.bundle;version='[1.0.8,1.0.9)',\
 	org.apache.aries.util;version='[1.0.0,1.0.1)',\
-	org.objectweb.asm.all;version='[5.1.0,5.1.1)',\
 	com.fasterxml.jackson.core.jackson-core;version='[2.9.4,2.9.5)',\
 	org.freemarker.freemarker;version='[2.3.28,2.3.29)',\
 	org.jdrupes.json;version='[2.0.1,2.0.2)',\
 	org.jgrapes.osgi.core;version='[0.9.8,0.9.9)',\
 	org.jgrapes.osgi.demo.heroku;version=snapshot,\
 	com.sun.activation.javax.activation;version='[1.2.0,1.2.1)',\
-	org.apache.felix.metatype;version='[1.2.0,1.2.1)',\
-	org.jdrupes.httpcodec;version='[1.0.8,1.0.9)',\
-	org.jgrapes.core;version='[0.18.6,0.18.7)',\
-	org.jgrapes.http;version='[0.18.6,0.18.7)',\
-	org.jgrapes.io;version='[0.18.6,0.18.7)',\
-	org.jgrapes.util;version='[0.18.6,0.18.7)',\
 	org.osgi.util.pushstream;version='[1.0.0,1.0.1)',\
 	osgi.promise;version='[7.0.0,7.0.1)',\
-	org.apache.felix.scr;version='[2.1.6,2.1.7)',\
-	org.jgrapes.portal.base;version='[0.19.3,0.19.4)',\
-	org.jgrapes.portal.bootstrap4;version='[0.19.3,0.19.4)',\
-	org.jgrapes.portal.providers.chartjs;version='[0.19.3,0.19.4)',\
-	org.jgrapes.portal.providers.fontawesome;version='[0.19.3,0.19.4)',\
-	org.jgrapes.portal.providers.markdownit;version='[0.19.3,0.19.4)',\
-	org.jgrapes.portal.providers.vuejs;version='[0.19.3,0.19.4)',\
-	org.jgrapes.portlets.markdowndisplay;version='[0.19.3,0.19.4)',\
-	org.jgrapes.portlets.sysinfo;version='[0.19.3,0.19.4)',\
 	org.osgi.service.log;version='[1.4.0,1.4.1)',\
 	org.jgrapes.osgi.portlets.bundles;version='[0.9.16,0.9.17)',\
-	org.jgrapes.osgi.portlets.services;version='[0.9.18,0.9.19)'
+	org.jgrapes.osgi.portlets.services;version='[0.9.18,0.9.19)',\
+	org.apache.felix.metatype;version='[1.2.2,1.2.3)',\
+	org.apache.felix.scr;version='[2.0.12,2.0.13)',\
+	org.jdrupes.httpcodec;version='[2.0.1,2.0.2)',\
+	org.jgrapes.core;version='[0.19.1,0.19.2)',\
+	org.jgrapes.http;version='[0.19.1,0.19.2)',\
+	org.jgrapes.io;version='[0.19.1,0.19.2)',\
+	org.jgrapes.portal.base;version='[0.20.1,0.20.2)',\
+	org.jgrapes.portal.bootstrap4;version='[0.20.1,0.20.2)',\
+	org.jgrapes.portal.providers.chartjs;version='[0.20.1,0.20.2)',\
+	org.jgrapes.portal.providers.fontawesome;version='[0.20.1,0.20.2)',\
+	org.jgrapes.portal.providers.markdownit;version='[0.20.1,0.20.2)',\
+	org.jgrapes.portal.providers.vuejs;version='[0.20.1,0.20.2)',\
+	org.jgrapes.portlets.markdowndisplay;version='[0.20.1,0.20.2)',\
+	org.jgrapes.portlets.sysinfo;version='[0.20.1,0.20.2)',\
+	org.jgrapes.util;version='[0.19.1,0.19.2)',\
+	org.objectweb.asm.all;version='[5.2.0,5.2.1)'
 	
 -runrequires: \
 	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.demo.heroku)',\
