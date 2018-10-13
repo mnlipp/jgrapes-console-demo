@@ -2,3 +2,6 @@
 .metadata
 */bin
 */generated
+**/.classpath
+**/.project
+

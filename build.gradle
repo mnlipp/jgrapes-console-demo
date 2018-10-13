@@ -12,6 +12,11 @@ buildscript {
 
 apply plugin: 'biz.aQute.bnd.workspace'
 
+subprojects {
+	apply plugin: 'java'
+	apply from: "${project.rootDir}/gradle/subprojects.gradle"
+}
+
 ext {
 	isTravisBuild = System.getenv().get("TRAVIS") == 'true'
 }
@@ -19,4 +24,8 @@ ext {
 task stage {
 	dependsOn ':org.jgrapes.osgi.demo.heroku:export'
 }
-  
+
+apply plugin: 'eclipse'
+
+tasks.eclipse.dependsOn(cleanEclipse)
+
