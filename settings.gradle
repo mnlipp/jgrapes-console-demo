@@ -1,6 +1,4 @@
-enableFeaturePreview('STABLE_PUBLISHING')
-
-rootProject.name = 'heroku-portal-demo'
+rootProject.name = 'heroku-console-demo'
 
 for (File file: rootDir.listFiles()) {
     if (file.isDirectory() &&
