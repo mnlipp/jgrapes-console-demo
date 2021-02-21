@@ -1,5 +1,5 @@
 This is a small demonstration of a console built with the
-[JGrapes component frameworks](https://github.com/mnlipp/jgrapes).
+[JGrapes component frameworks](https://mnlipp.github.io/jgrapes/).
 
 Conlets are rendered in preview mode on the overview tab. Most
 conlets also support rendering in view mode. Using the latter
