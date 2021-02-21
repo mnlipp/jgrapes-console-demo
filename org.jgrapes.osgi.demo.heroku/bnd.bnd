@@ -1,6 +1,6 @@
 Bundle-Name: JGrapes Heroku OSGi Portal Demo
-# Bundle-Version: 0.9.1.-${tstamp}-SNAPSHOT
-Bundle-Version: 0.13.0.ga
+Bundle-Version: 0.14.0.-${tstamp}-SNAPSHOT
+#Bundle-Version: 0.13.0.ga
 Bundle-Copyright: Michael N. Lipp (c) 2017, 2021
 Bundle-License: http://www.gnu.org/licenses/agpl-3.0.txt
 Bundle-Activator: org.jgrapes.osgi.demo.heroku.Application
@@ -14,7 +14,7 @@ Bundle-Activator: org.jgrapes.osgi.demo.heroku.Application
 	org.jgrapes.http;version=latest,\
 	org.jgrapes.util;version=latest,\
 	org.jgrapes.webconsole.base;version=latest,\
-    org.jgrapes.webconsole.bootstrap4;version=latest,\
+    org.jgrapes.webconsole.vuejs;version=latest,\
 	org.jgrapes.webconlet.markdowndisplay;version='latest',\
 	org.jgrapes.osgi.core;version='latest'
 

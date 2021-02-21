@@ -43,7 +43,7 @@ import org.jgrapes.webconsole.base.ConsoleWeblet;
 import org.jgrapes.webconsole.base.KVStoreBasedConsolePolicy;
 import org.jgrapes.webconsole.base.PageResourceProviderFactory;
 import org.jgrapes.webconsole.base.WebConsole;
-import org.jgrapes.webconsole.bootstrap4.Bootstrap4Weblet;
+import org.jgrapes.webconsole.vuejs.VueJsConsoleWeblet;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -90,7 +90,7 @@ public class Application extends Component implements BundleActivator {
 		app.attach(new StaticContentDispatcher(app.channel(),
 		        "/static/**", Application.class.getResource("static/README.txt").toURI()));
         ConsoleWeblet portalWeblet
-        	= app.attach(new Bootstrap4Weblet(app.channel(), Channel.SELF,
+        	= app.attach(new VueJsConsoleWeblet(app.channel(), Channel.SELF,
             new URI("/")))
         	.prependClassTemplateLoader(this.getClass())
         	.prependConsoleResourceProvider(getClass())
