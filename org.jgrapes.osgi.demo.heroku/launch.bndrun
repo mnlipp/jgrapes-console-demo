@@ -38,11 +38,11 @@
 	org.jgrapes.osgi.webconlet.services;version='[0.11.0,0.11.1)'
 	
 -runrequires: \
-	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.demo.heroku)',\
-	osgi.identity;filter:='(osgi.identity=org.jgrapes.webconlet.sysinfo)',\
-	osgi.identity;filter:='(osgi.identity=org.jgrapes.webconlet.markdowndisplay)',\
-	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.webconlet.bundles)',\
-	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.webconlet.services)'
+    bnd.identity; id=org.jgrapes.osgi.demo.heroku; version='latest',\
+    bnd.identity; id=org.jgrapes.webconlet.sysinfo; version='latest',\
+    bnd.identity; id=org.jgrapes.webconlet.markdowndisplay; version='latest',\
+    bnd.identity; id=org.jgrapes.osgi.webconlet.bundles; version='latest',\
+    bnd.identity; id=org.jgrapes.osgi.webconlet.services; version='latest'
 # Deprecated versions:
 -runblacklist: \
 	osgi.identity;filter:='(osgi.identity=org.jgrapes.osgi.portal.providers.chartjs)',\
