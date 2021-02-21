@@ -19,34 +19,35 @@
 package org.jgrapes.osgi.demo.heroku;
 
 import java.util.ResourceBundle;
-
 import org.jgrapes.core.Channel;
 import org.jgrapes.core.Component;
 import org.jgrapes.core.annotation.Handler;
-import org.jgrapes.portal.base.PortalSession;
-import org.jgrapes.portal.base.events.DisplayNotification;
-import org.jgrapes.portal.base.events.NotifyPortletModel;
+import org.jgrapes.webconsole.base.ConsoleSession;
+import org.jgrapes.webconsole.base.events.DisplayNotification;
+import org.jgrapes.webconsole.base.events.NotifyConletModel;
 
 /**
  *
  */
 public class ActionFilter extends Component {
 
-	public ActionFilter(Channel componentChannel) {
-		super(componentChannel);
-	}
+    public ActionFilter(Channel componentChannel) {
+        super(componentChannel);
+    }
 
-	@Handler(priority=1000)
-	public void onNotifyPortletModel(NotifyPortletModel event, PortalSession channel) {
-		if (event.portletId().startsWith("org.jgrapes.osgi.portlets.bundles.BundleListPortlet-")
-				&& !event.method().equals("sendDetails")) {
-			event.stop();
-			ResourceBundle resources = ResourceBundle.getBundle(
-					ActionFilter.class.getPackage().getName() + ".app-l10n");
-			channel.respond(new DisplayNotification("<span>"
-					+ resources.getString("actionDisabled")
-					+ "</span>")
-					.addOption("autoClose", 5000));
-		}
-	}
+    @Handler(priority = 1000)
+    public void onNotifyPortletModel(NotifyConletModel event,
+            ConsoleSession channel) {
+        if (event.conletId()
+            .startsWith("org.jgrapes.osgi.webconlet.bundles.BundleListConlet-")
+            && !event.method().equals("sendDetails")) {
+            event.stop();
+            ResourceBundle resources = ResourceBundle.getBundle(
+                ActionFilter.class.getPackage().getName() + ".app-l10n");
+            channel.respond(new DisplayNotification("<span>"
+                + resources.getString("actionDisabled")
+                + "</span>")
+                    .addOption("autoClose", 5000));
+        }
+    }
 }

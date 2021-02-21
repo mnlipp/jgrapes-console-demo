@@ -20,8 +20,9 @@ package org.jgrapes.osgi.demo.heroku;
 
 import java.net.InetSocketAddress;
 import java.net.URI;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
-
 import org.jgrapes.core.Channel;
 import org.jgrapes.core.Component;
 import org.jgrapes.core.Components;
@@ -36,13 +37,13 @@ import org.jgrapes.io.FileStorage;
 import org.jgrapes.io.NioDispatcher;
 import org.jgrapes.net.TcpServer;
 import org.jgrapes.osgi.core.ComponentCollector;
-import org.jgrapes.portal.base.KVStoreBasedPortalPolicy;
-import org.jgrapes.portal.base.PageResourceProviderFactory;
-import org.jgrapes.portal.base.Portal;
-import org.jgrapes.portal.base.PortalLocalBackedKVStore;
-import org.jgrapes.portal.base.PortalWeblet;
-import org.jgrapes.portal.base.PortletComponentFactory;
-import org.jgrapes.portal.bootstrap4.Bootstrap4Weblet;
+import org.jgrapes.webconsole.base.BrowserLocalBackedKVStore;
+import org.jgrapes.webconsole.base.ConletComponentFactory;
+import org.jgrapes.webconsole.base.ConsoleWeblet;
+import org.jgrapes.webconsole.base.KVStoreBasedConsolePolicy;
+import org.jgrapes.webconsole.base.PageResourceProviderFactory;
+import org.jgrapes.webconsole.base.WebConsole;
+import org.jgrapes.webconsole.bootstrap4.Bootstrap4Weblet;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -88,23 +89,33 @@ public class Application extends Component implements BundleActivator {
 		app.attach(new FileStorage(app.channel(), 65536));
 		app.attach(new StaticContentDispatcher(app.channel(),
 		        "/static/**", Application.class.getResource("static/README.txt").toURI()));
-        PortalWeblet portalWeblet
+        ConsoleWeblet portalWeblet
         	= app.attach(new Bootstrap4Weblet(app.channel(), Channel.SELF,
             new URI("/")))
         	.prependClassTemplateLoader(this.getClass())
-        	.prependPortalResourceProvider(getClass())
+        	.prependConsoleResourceProvider(getClass())
         	.prependResourceBundleProvider(getClass())
-            .setPortalSessionInactivityTimeout(300000);
-        Portal portal = portalWeblet.portal();
-        portal.attach(new PortalLocalBackedKVStore(
-                portal, portalWeblet.prefix().getPath()));
-		portal.attach(new KVStoreBasedPortalPolicy(portal));
-		portal.attach(new NewPortalSessionPolicy(portal));
-		portal.attach(new ActionFilter(portal));
-		portal.attach(new ComponentCollector<>(
-				portal, context, PageResourceProviderFactory.class));
-		portal.attach(new ComponentCollector<>(
-				portal, context, PortletComponentFactory.class));
+            .setConsoleSessionInactivityTimeout(300000);
+        WebConsole console = portalWeblet.console();
+        console.attach(new BrowserLocalBackedKVStore(
+                console, portalWeblet.prefix().getPath()));
+		console.attach(new KVStoreBasedConsolePolicy(console));
+		console.attach(new NewConsoleSessionPolicy(console));
+		console.attach(new ActionFilter(console));
+		console.attach(new ComponentCollector<>(
+				console, context, PageResourceProviderFactory.class,
+	            type -> {
+	                switch (type) {
+	                case "org.jgrapes.webconsole.provider.gridstack.GridstackProvider":
+	                    return Arrays.asList(
+	                        Components.mapOf("configuration",
+	                            "CoreWithJQUiPlugin"));
+	                default:
+	                    return Arrays.asList(Collections.emptyMap());
+	                }
+	            }));
+		console.attach(new ComponentCollector<>(
+				console, context, ConletComponentFactory.class));
 		Components.start(app);
 	}
 
