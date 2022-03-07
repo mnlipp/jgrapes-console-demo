@@ -1,11 +1,12 @@
 -runfw: org.apache.felix.framework;version='[7.0.3,7.0.3]'
 	
 -runrequires: \
-    bnd.identity; id=org.jgrapes.osgi.demo.heroku; version='latest',\
-    bnd.identity; id=org.jgrapes.webconlet.sysinfo; version='latest',\
-    bnd.identity; id=org.jgrapes.webconlet.markdowndisplay; version='latest',\
-    bnd.identity; id=org.jgrapes.osgi.webconlet.bundles; version='latest',\
-    bnd.identity; id=org.jgrapes.osgi.webconlet.services; version='latest'
+	bnd.identity;id='org.jgrapes.osgi.demo.heroku';version=latest,\
+	bnd.identity;id='org.jgrapes.webconlet.sysinfo';version=latest,\
+	bnd.identity;id='org.jgrapes.webconlet.markdowndisplay';version=latest,\
+	bnd.identity;id='org.jgrapes.osgi.webconlet.bundles';version=latest,\
+	bnd.identity;id='org.jgrapes.osgi.webconlet.services';version=latest,\
+	bnd.identity;id='org.jgrapes.webconlet.examples.helloworld';version=latest
 
 # Deprecated versions:
 -runblacklist: \
@@ -41,6 +42,7 @@
 	org.jgrapes.core;version='[1.3.5,1.3.6)',\
 	org.jgrapes.http;version='[1.3.5,1.3.6)',\
 	org.jgrapes.io;version='[1.3.5,1.3.6)',\
+	org.jgrapes.util;version='[1.3.5,1.3.6)',\
 	org.jgrapes.webconsole.base;version='[0.35.0,0.35.1)',\
 	org.jgrapes.webconsole.vuejs;version='[0.12.0,0.12.1)',\
 	org.jgrapes.webconsole.provider.chartjs;version='[0.27.0,0.27.1)',\
@@ -57,4 +59,4 @@
 	org.jgrapes.webconlet.sysinfo;version='[0.33.0,0.33.1)',\
 	org.jgrapes.osgi.webconlet.bundles;version='[0.16.0,0.16.1)',\
 	org.jgrapes.osgi.webconlet.services;version='[0.15.0,0.15.1)',\
-	org.jgrapes.util;version='[1.3.5,1.3.6)'
+	org.jgrapes.webconlet.examples.helloworld;version='[0.2.0,0.2.1)'
