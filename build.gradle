@@ -3,13 +3,9 @@ buildscript {
         mavenCentral()
         maven { url 'https://jitpack.io' }
     }
-//    dependencies {
-//      classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:6.1.0"
-//    }
-}
-
-plugins {
-    id "biz.aQute.bnd.workspace" version "6.1.0"
+    dependencies {
+      classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:6.2.0"
+    }
 }
 
 apply plugin: 'biz.aQute.bnd.workspace'
