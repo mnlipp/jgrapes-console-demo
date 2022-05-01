@@ -39,7 +39,7 @@ public class ActionFilter extends Component {
     public void onNotifyPortletModel(NotifyConletModel event,
             ConsoleSession channel) {
         if (event.conletId()
-            .startsWith("org.jgrapes.osgi.webconlet.bundles.BundleListConlet-")
+            .startsWith("org.jgrapes.osgi.webconlet.bundles.BundleListConlet~")
             && !event.method().equals("sendDetails")) {
             event.stop();
             ResourceBundle resources = ResourceBundle.getBundle(
