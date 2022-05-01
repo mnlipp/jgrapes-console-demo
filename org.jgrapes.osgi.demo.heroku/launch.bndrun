@@ -6,7 +6,9 @@
 	bnd.identity;id='org.jgrapes.webconlet.markdowndisplay';version=latest,\
 	bnd.identity;id='org.jgrapes.osgi.webconlet.bundles';version=latest,\
 	bnd.identity;id='org.jgrapes.osgi.webconlet.services';version=latest,\
-	bnd.identity;id='org.jgrapes.webconlet.examples.helloworld';version=latest
+	bnd.identity;id='org.jgrapes.webconlet.examples.helloworld';version=latest,\
+    bnd.identity; id=org.jgrapes.webconlet.examples.styletest; version='latest',\
+    bnd.identity; id=org.jgrapes.webconlet.examples.formtest; version='latest'
 
 # Deprecated versions:
 -runblacklist: \
@@ -58,4 +60,7 @@
 	org.jgrapes.webconlet.sysinfo;version='[0.37.0,0.37.1)',\
 	org.jgrapes.osgi.webconlet.bundles;version='[0.18.0,0.18.1)',\
 	org.jgrapes.osgi.webconlet.services;version='[0.16.0,0.16.1)',\
-	org.jgrapes.webconlet.examples.helloworld;version='[0.3.0,0.3.1)'
+	org.jgrapes.webconlet.examples.helloworld;version='[0.3.0,0.3.1)',\
+    org.jgrapes.webconlet.examples.styletest;version='[0.4.0,0.4.1)',\
+    org.jgrapes.webconlet.examples.formtest;version='[0.3.0,0.3.1)'
+	
