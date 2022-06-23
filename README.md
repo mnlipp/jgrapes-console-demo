@@ -5,6 +5,6 @@ JGrapes Portal Demo
 
 See the [project's home page](https://mnlipp.github.io/jgrapes/).
 
-This repository comprises a Heroku application that provides a 
+This repository comprises a Heroku application that provides a
 [demo of a JGrapes web console](https://jgrapes-portal-demo.herokuapp.com/), 
 built from OSGi components.
