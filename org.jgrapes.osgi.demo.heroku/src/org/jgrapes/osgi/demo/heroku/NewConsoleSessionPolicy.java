@@ -28,7 +28,7 @@ import org.jgrapes.core.Component;
 import org.jgrapes.core.annotation.Handler;
 import org.jgrapes.webconlet.markdowndisplay.MarkdownDisplayConlet;
 import org.jgrapes.webconsole.base.Conlet.RenderMode;
-import org.jgrapes.webconsole.base.ConsoleSession;
+import org.jgrapes.webconsole.base.ConsoleConnection;
 import org.jgrapes.webconsole.base.events.AddConletRequest;
 import org.jgrapes.webconsole.base.events.ConsoleConfigured;
 import org.jgrapes.webconsole.base.events.ConsolePrepared;
@@ -60,23 +60,23 @@ public class NewConsoleSessionPolicy extends Component {
 
     @Handler
     public void onConsolePrepared(ConsolePrepared event,
-            ConsoleSession portalSession) {
-        portalSession.setAssociated(NewConsoleSessionPolicy.class, false);
+            ConsoleConnection channel) {
+        channel.setAssociated(NewConsoleSessionPolicy.class, false);
     }
 
     @Handler
     public void onRenderConlet(RenderConlet event,
-            ConsoleSession consoleSession) {
+            ConsoleConnection channel) {
         if (event.conletId().equals(INTRO_CONLET_ID)) {
-            consoleSession.setAssociated(NewConsoleSessionPolicy.class, true);
+            channel.setAssociated(NewConsoleSessionPolicy.class, true);
         }
     }
 
     @Handler
     public void onConsoleConfigured(ConsoleConfigured event,
-            ConsoleSession consoleSession)
+            ConsoleConnection channel)
             throws InterruptedException, IOException {
-        boolean foundIntro = consoleSession.associated(
+        boolean foundIntro = channel.associated(
             NewConsoleSessionPolicy.class, Boolean.class).orElse(false);
         String shortDesc;
         try (BufferedReader shortDescReader
@@ -109,12 +109,12 @@ public class NewConsoleSessionPolicy extends Component {
                     .addProperty(MarkdownDisplayConlet.VIEW_SOURCE, longDesc)
                     .addProperty(MarkdownDisplayConlet.EDITABLE_BY,
                         Collections.EMPTY_SET),
-                consoleSession);
+                channel);
         } else {
             fire(new UpdateConletModel(INTRO_CONLET_ID)
                 .addPreference(MarkdownDisplayConlet.PREVIEW_SOURCE, shortDesc)
                 .addPreference(MarkdownDisplayConlet.VIEW_SOURCE, longDesc),
-                consoleSession);
+                channel);
         }
     }
 

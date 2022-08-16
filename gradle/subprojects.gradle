@@ -5,14 +5,9 @@ if (plugins.hasPlugin('biz.aQute.bnd')) {
         project.version = bnd.artifact_version
     }
 
-    // See https://github.com/bndtools/bnd/issues/5002    
     java {
-        if (bnd.get("javac.source")) {
-            sourceCompatibility = bnd.get("javac.source");
-        }
-        if (bnd.get("javac.target")) {
-            targetCompatibility = bnd.get("javac.target");
-        }
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 

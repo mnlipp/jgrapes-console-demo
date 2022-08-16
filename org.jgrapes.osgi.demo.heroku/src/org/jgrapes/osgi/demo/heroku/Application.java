@@ -20,8 +20,10 @@ package org.jgrapes.osgi.demo.heroku;
 
 import java.net.InetSocketAddress;
 import java.net.URI;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 import org.jgrapes.core.Channel;
 import org.jgrapes.core.Component;
@@ -52,79 +54,85 @@ import org.osgi.framework.BundleContext;
  */
 public class Application extends Component implements BundleActivator {
 
-	private static BundleContext context;
-	private Application app;
-	
-	public static BundleContext context() {
-		return context;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void start(BundleContext context) throws Exception {
-		Application.context = context;
-		// The demo component is the application
-		app = new Application();
-		// Attach a general nio dispatcher
-		app.attach(new NioDispatcher());
+    private static BundleContext context;
+    private Application app;
 
-		// Network level unencrypted channel.
-		Channel httpTransport = new NamedChannel("httpTransport");
-		// Create a TCP server listening on port 5000
-		app.attach(new TcpServer(httpTransport)
-				.setServerAddress(new InetSocketAddress(
-						Optional.ofNullable(System.getenv("PORT"))
-						.map(Integer::parseInt).orElse(5000))));
+    public static BundleContext context() {
+        return context;
+    }
 
-		// Create an HTTP server as converter between transport and application
-		// layer.
-		app.attach(new HttpServer(app, 
-		        httpTransport, Request.In.Get.class, Request.In.Post.class));
-		
-		// Build application layer
-		app.attach(new InMemorySessionManager(app.channel()));
-		app.attach(new LanguageSelector(app.channel()));
-		app.attach(new FileStorage(app.channel(), 65536));
-		app.attach(new StaticContentDispatcher(app.channel(),
-		        "/static/**", Application.class.getResource("static/README.txt").toURI()));
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.
+     * BundleContext)
+     */
+    @Override
+    public void start(BundleContext context) throws Exception {
+        Application.context = context;
+        // The demo component is the application
+        app = new Application();
+        // Attach a general nio dispatcher
+        app.attach(new NioDispatcher());
+
+        // Network level unencrypted channel.
+        Channel httpTransport = new NamedChannel("httpTransport");
+        // Create a TCP server listening on port 5000
+        app.attach(new TcpServer(httpTransport)
+            .setServerAddress(new InetSocketAddress(
+                Optional.ofNullable(System.getenv("PORT"))
+                    .map(Integer::parseInt).orElse(5000))));
+
+        // Create an HTTP server as converter between transport and application
+        // layer.
+        app.attach(new HttpServer(app,
+            httpTransport, Request.In.Get.class, Request.In.Post.class));
+
+        // Build application layer
+        app.attach(new InMemorySessionManager(app.channel()));
+        app.attach(new LanguageSelector(app.channel()));
+        app.attach(new FileStorage(app.channel(), 65536));
+        app.attach(new StaticContentDispatcher(app.channel(),
+            "/static/**",
+            Application.class.getResource("static/README.txt").toURI()));
         ConsoleWeblet portalWeblet
-        	= app.attach(new VueJsConsoleWeblet(app.channel(), Channel.SELF,
-            new URI("/")))
-        	.prependClassTemplateLoader(this.getClass())
-        	.prependConsoleResourceProvider(getClass())
-        	.prependResourceBundleProvider(getClass())
-            .setConsoleSessionInactivityTimeout(300000);
+            = app.attach(new VueJsConsoleWeblet(app.channel(), Channel.SELF,
+                new URI("/")))
+                .prependClassTemplateLoader(this.getClass())
+                .prependConsoleResourceProvider(getClass())
+                .prependResourceBundleProvider(getClass())
+                .setConnectionInactivityTimeout(Duration.ofMinutes(5));
         WebConsole console = portalWeblet.console();
         console.attach(new BrowserLocalBackedKVStore(
-                console, portalWeblet.prefix().getPath()));
-		console.attach(new KVStoreBasedConsolePolicy(console));
-		console.attach(new NewConsoleSessionPolicy(console));
-		console.attach(new ActionFilter(console));
-		console.attach(new ComponentCollector<>(
-				console, context, PageResourceProviderFactory.class,
-	            type -> {
-	                switch (type) {
-	                case "org.jgrapes.webconsole.provider.gridstack.GridstackProvider":
-	                    return Arrays.asList(
-	                        Components.mapOf("configuration",
-	                            "CoreWithJQUiPlugin"));
-	                default:
-	                    return Arrays.asList(Collections.emptyMap());
-	                }
-	            }));
-		console.attach(new ComponentCollector<>(
-				console, context, ConletComponentFactory.class));
-		Components.start(app);
-	}
+            console, portalWeblet.prefix().getPath()));
+        console.attach(new KVStoreBasedConsolePolicy(console));
+        console.attach(new NewConsoleSessionPolicy(console));
+        console.attach(new ActionFilter(console));
+        console.attach(new ComponentCollector<>(
+            console, context, PageResourceProviderFactory.class,
+            type -> {
+                switch (type) {
+                case "org.jgrapes.webconsole.provider.gridstack.GridstackProvider":
+                    return Arrays.asList(Map.of("configuration",
+                        "CoreWithJQUiPlugin"));
+                default:
+                    return Arrays.asList(Collections.emptyMap());
+                }
+            }));
+        console.attach(new ComponentCollector<>(
+            console, context, ConletComponentFactory.class));
+        Components.start(app);
+    }
 
-	/* (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void stop(BundleContext context) throws Exception {
-		app.fire(new Stop(), Channel.BROADCAST);
-		Components.awaitExhaustion();
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
+     */
+    @Override
+    public void stop(BundleContext context) throws Exception {
+        app.fire(new Stop(), Channel.BROADCAST);
+        Components.awaitExhaustion();
+    }
 }
