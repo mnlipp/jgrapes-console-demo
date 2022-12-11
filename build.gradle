@@ -18,8 +18,10 @@ ext {
 	isCiBuild = System.getenv().get("CI") == 'true'
 }
 
-task stage {
+task stage(type: Copy) {
 	dependsOn ':org.jgrapes.osgi.demo.console:export'
+    from 'org.jgrapes.osgi.demo.console/generated/distributions/executable'
+    into 'podman'    
 }
 
 apply plugin: 'eclipse'
