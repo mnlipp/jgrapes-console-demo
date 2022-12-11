@@ -1,4 +1,4 @@
-rootProject.name = 'heroku-console-demo'
+rootProject.name = 'jgrapes-console-demo'
 
 for (File file: rootDir.listFiles()) {
     if (file.isDirectory() &&

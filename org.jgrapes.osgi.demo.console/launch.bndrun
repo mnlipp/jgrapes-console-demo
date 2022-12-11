@@ -1,7 +1,7 @@
 -runfw: org.apache.felix.framework;version='[7.0.3,7.0.3]'
 	
 -runrequires: \
-	bnd.identity;id='org.jgrapes.osgi.demo.heroku';version=latest,\
+	bnd.identity;id='org.jgrapes.osgi.demo.console';version=latest,\
 	bnd.identity;id='org.jgrapes.webconlet.sysinfo';version=latest,\
 	bnd.identity;id='org.jgrapes.webconlet.markdowndisplay';version=latest,\
 	bnd.identity;id='org.jgrapes.osgi.webconlet.bundles';version=latest,\
@@ -35,7 +35,7 @@
 	org.freemarker.freemarker;version='[2.3.31,2.3.32)',\
 	org.jdrupes.json;version='[2.3.1,2.3.2)',\
 	org.jgrapes.osgi.core;version='[1.2.0,1.2.1)',\
-	org.jgrapes.osgi.demo.heroku;version=snapshot,\
+	org.jgrapes.osgi.demo.console;version=snapshot,\
 	com.sun.activation.javax.activation;version='[1.2.0,1.2.1)',\
 	org.apache.felix.scr;version='[2.2.2,2.2.3)',\
 	org.osgi.service.component;version='[1.5.0,1.5.1)',\

@@ -1,9 +1,9 @@
-Bundle-Name: JGrapes Heroku OSGi Portal Demo
+Bundle-Name: JGrapes OSGi Portal Demo
 Bundle-Version: 0.15.0.-${tstamp}-SNAPSHOT
-Bundle-Version: 0.14.0.ga
+#Bundle-Version: 0.14.0.ga
 Bundle-Copyright: Michael N. Lipp (c) 2017, 2022
 Bundle-License: http://www.gnu.org/licenses/agpl-3.0.txt
-Bundle-Activator: org.jgrapes.osgi.demo.heroku.Application
+Bundle-Activator: org.jgrapes.osgi.demo.console.Application
 
 -buildpath: \
 	osgi.core;version=6.0.0,\
@@ -21,7 +21,7 @@ Bundle-Activator: org.jgrapes.osgi.demo.heroku.Application
 -includeresource: \
 	resources
 
-Private-Package: org.jgrapes.osgi.demo.heroku
+Private-Package: org.jgrapes.osgi.demo.console
 
 -fixupmessages: \
     "The .classpath contains an unknown container: GROOVY_DSL_SUPPORT. This could make your build less portable.", \

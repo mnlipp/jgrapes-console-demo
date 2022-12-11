@@ -16,7 +16,7 @@
  * with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.jgrapes.osgi.demo.heroku;
+package org.jgrapes.osgi.demo.console;
 
 import java.util.ResourceBundle;
 import org.jgrapes.core.Channel;

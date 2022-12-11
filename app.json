@@ -1,6 +1,0 @@
-{
-  "name": "Heroku JGrapes Portal Demo",
-  "description": "A JGrapes portal demo application.",
-  "image": "heroku/gradle",
-  "addons": []
-}

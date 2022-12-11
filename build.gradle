@@ -19,7 +19,7 @@ ext {
 }
 
 task stage {
-	dependsOn ':org.jgrapes.osgi.demo.heroku:export'
+	dependsOn ':org.jgrapes.osgi.demo.console:export'
 }
 
 apply plugin: 'eclipse'
