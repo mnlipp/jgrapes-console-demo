@@ -37,7 +37,7 @@ import org.jgrapes.http.StaticContentDispatcher;
 import org.jgrapes.http.events.Request;
 import org.jgrapes.io.FileStorage;
 import org.jgrapes.io.NioDispatcher;
-import org.jgrapes.net.TcpServer;
+import org.jgrapes.net.SocketServer;
 import org.jgrapes.osgi.core.ComponentCollector;
 import org.jgrapes.webconsole.base.BrowserLocalBackedKVStore;
 import org.jgrapes.webconsole.base.ConletComponentFactory;
@@ -78,7 +78,7 @@ public class Application extends Component implements BundleActivator {
         // Network level unencrypted channel.
         Channel httpTransport = new NamedChannel("httpTransport");
         // Create a TCP server listening on port 5000
-        app.attach(new TcpServer(httpTransport)
+        app.attach(new SocketServer(httpTransport)
             .setServerAddress(new InetSocketAddress(
                 Optional.ofNullable(System.getenv("PORT"))
                     .map(Integer::parseInt).orElse(5000))));
