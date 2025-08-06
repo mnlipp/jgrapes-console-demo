@@ -3,6 +3,12 @@ plugins {
     id 'org.ajoberstar.grgit'
 }
 
+file("bnd.bnd").withReader { 
+   Properties props = new Properties()
+   props.load(it)
+   project.version = props.getProperty("Bundle-Version")
+}
+
 project.version = '0.14.2.ga'
 
 project.ext.gitBranch = grgit.branch.current.name.replace('/', '-')
