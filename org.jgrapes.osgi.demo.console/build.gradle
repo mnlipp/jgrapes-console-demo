@@ -3,6 +3,8 @@ plugins {
     id 'org.ajoberstar.grgit'
 }
 
+project.version = '0.14.2.ga'
+
 project.ext.gitBranch = grgit.branch.current.name.replace('/', '-')
 def registry = "${project.rootProject.properties['docker.registry']}"
 
