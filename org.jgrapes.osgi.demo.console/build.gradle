@@ -1,0 +1,24 @@
+plugins {
+    // Access to git information
+    id 'org.ajoberstar.grgit'
+}
+
+project.ext.gitBranch = grgit.branch.current.name.replace('/', '-')
+def registry = "${project.rootProject.properties['docker.registry']}"
+
+task buildImage(type: Exec) {
+    dependsOn "export.launch"
+    inputs.files 'src/org/jgrapes/osgi/demo/console/Containerfile'
+    
+    commandLine 'podman', 'build', '--pull',
+        '-t', "${project.name}:${project.gitBranch}",\
+        '-f', 'src/org/jgrapes/osgi/demo/console/Containerfile', '.'
+}
+
+task pushImage(type: Exec) {
+    dependsOn buildImage
+
+    commandLine 'podman', 'push', '--tls-verify=false', \
+        "${project.name}:${project.gitBranch}", \
+        "${registry}/${project.name}:${project.gitBranch}"
+}

@@ -8,6 +8,10 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.ajoberstar.grgit' version '5.2.0'
+}
+
 apply plugin: 'biz.aQute.bnd.workspace'
 
 subprojects {
