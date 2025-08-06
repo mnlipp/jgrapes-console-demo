@@ -21,4 +21,38 @@ task pushImage(type: Exec) {
     commandLine 'podman', 'push', '--tls-verify=false', \
         "${project.name}:${project.gitBranch}", \
         "${registry}/${project.name}:${project.gitBranch}"
+        
+    doLast {
+        println "Pushed to ${registry}/${project.name}:latest"
+    }
+}
+
+task tagWithVersion(type: Exec) {
+    dependsOn pushImage
+
+    commandLine 'podman', 'push', \
+        "${project.name}:${project.gitBranch}",\
+        "${registry}/${project.name}:${project.version}"
+        
+    doLast {
+        println "Tagged as ${registry}/${project.name}:${project.version}"
+    }
+}
+
+task tagAsLatest(type: Exec) {
+    dependsOn tagWithVersion
+
+    commandLine 'podman', 'push', \
+        "${project.name}:${project.gitBranch}",\
+        "${registry}/${project.name}:latest"
+        
+    doLast {
+        println "Pushed to ${registry}/${project.name}:latest"
+    }
+}
+
+task publishImage {
+    dependsOn pushImage
+    dependsOn tagWithVersion
+    dependsOn tagAsLatest
 }
